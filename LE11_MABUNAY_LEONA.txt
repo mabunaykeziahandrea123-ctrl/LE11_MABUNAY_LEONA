@@ -1,0 +1,38 @@
+#include <stdio.h>
+   
+    int main() {
+        char name [100],section[50];
+        FILE*file;
+        
+        printf ("Complete Name: ");
+        fgets (name, sizeof(name), stdin);
+        
+        printf ("Section: ");
+        fgets (section, sizeof(section), stdin);
+        
+        file=fopen("student.text", "w");
+        if (file==NULL){
+          printf("Error opening file!\n");
+          return 1;
+        }
+    
+    fprintf (file, "Complete Name:%s", name);
+    fprintf (file, "Section:%s", section);
+    fclose(file);
+   
+    printf("Information successfully saved to student.txt\n\n");
+    
+    file=fopen("student.text","r");
+    if (file == NULL) {
+        printf("Error reading file!\n");
+        return 1;
+    }
+       
+    char ch;
+       while((ch = fgetc(file)) !=EOF) {
+           putchar(ch);
+       }
+       
+       fclose(file);
+       return 0;
+    }
